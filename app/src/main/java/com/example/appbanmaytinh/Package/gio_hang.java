@@ -49,7 +49,10 @@ public class gio_hang extends Fragment {
        mlistcart=new ArrayList<>();
        adapter.setdata(mlistcart);
        lv4.setAdapter(adapter);
-       addlv4();
+
+       //addlv4();
+
+
        GridLayoutManager gridLayoutManager=new GridLayoutManager(nmainActivity,1);
        lv4.setLayoutManager(gridLayoutManager);
        RecyclerView.ItemDecoration itemDecoration=new DividerItemDecoration(nmainActivity,DividerItemDecoration.VERTICAL);
@@ -76,16 +79,16 @@ public class gio_hang extends Fragment {
     }
 
     }*/
-        public void addlv4()
-        {
-            Bundle bundle=getArguments();
-            String tensp= bundle.getString("tensp").toString().trim();
-            String giasp=bundle.getString("giasp").toString().trim();
-            cart cart=new cart(R.drawable.asus,tensp,giasp);
-            databasecart.getInstance(nmainActivity).cart2().insertcart(cart);
-            mlistcart=databasecart.getInstance(nmainActivity).cart2().getListCart(cart);
-            adapter.setdata(mlistcart);
-
-        }
+//        public void addlv4()
+//        {
+//            Bundle bundle=getArguments();
+//            String tensp= bundle.getString("tensp").toString().trim();
+//            String giasp=bundle.getString("giasp").toString().trim();
+//            cart cart=new cart(R.drawable.asus,tensp,giasp);
+//            databasecart.getInstance(nmainActivity).cart2().insertcart(cart);
+//            mlistcart=databasecart.getInstance(nmainActivity).cart2().getListCart(cart);
+//            adapter.setdata(mlistcart);
+//
+//        }
 }
 
