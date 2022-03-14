@@ -13,12 +13,14 @@ import android.widget.Toast;
 
 import com.example.appbanmaytinh.MainActivity;
 import com.example.appbanmaytinh.R;
+import com.example.appbanmaytinh.computer.database.khDBHelper;
+import com.example.appbanmaytinh.computer.khachhang;
 
 public class RegisterActivity extends AppCompatActivity {
     Button btnRegister;
     EditText gmail, password, rePassword;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-
+    khDBHelper khDBHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,9 +79,13 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        khDBHelper = new khDBHelper(RegisterActivity.this);
+
+
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                khDBHelper.insertKH(new khachhang(gmail.toString(),password.toString(),rePassword.toString()));
                 Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                 startActivity(intent);
             }
