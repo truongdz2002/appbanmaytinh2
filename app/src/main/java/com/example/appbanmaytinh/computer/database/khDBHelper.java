@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import com.example.appbanmaytinh.computer.khachhang;
 
 public class khDBHelper extends SQLiteOpenHelper {
-    public static final String DB_NAME = "quanlymaytinh.sqlite";
+    public static final String DB_NAME = "quanlymaytinh.db";
     public static final int DB_VERSION = 1;
     public static final String TB_NAME = "tbl_khachhang";
     public Context context;
