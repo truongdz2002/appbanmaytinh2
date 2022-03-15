@@ -85,9 +85,13 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                khDBHelper.insertKH(new khachhang(gmail.toString(),password.toString(),rePassword.toString()));
-                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                startActivity(intent);
+                khDBHelper = new khDBHelper(RegisterActivity.this);
+                boolean checkRegisterSuccessFully = khDBHelper.insertKH(new khachhang(gmail.getText().toString().trim(),password.getText().toString().trim(),rePassword.getText().toString().trim()));
+                if(checkRegisterSuccessFully == true){
+                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
     }

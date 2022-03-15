@@ -19,6 +19,7 @@ public class khDBHelper extends SQLiteOpenHelper {
 
     public khDBHelper(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
+        this.context = context;
     }
 
     @Override
@@ -34,21 +35,27 @@ public class khDBHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public void insertKH(khachhang khachhang) {
-//        ContentValues contentValues = new ContentValues();
-//        //put du lieu can insert vao doi tuong contentValues
-//        contentValues.put("Gmail", khachhang.getGmail());
-//        contentValues.put("Password", khachhang.getPassword());
-//        contentValues.put("RePassword", khachhang.getRePassword());
+    public boolean insertKH(khachhang khachhang) {
+        ContentValues contentValues = new ContentValues();
+        //put du lieu can insert vao doi tuong contentValues
+        contentValues.put("Gmail", khachhang.getGmail());
+        contentValues.put("Password", khachhang.getPassword());
+        contentValues.put("RePassword", khachhang.getRePassword());
         //lay ra sqliteDatabase de ghi du lieu
         SQLiteDatabase db = getWritableDatabase();
-        String sql = "INSERT INTO " + TB_NAME + " VALUES(" + khachhang.getGmail() + "," + khachhang.getPassword() + "," + khachhang.getRePassword() +")";
-        db.execSQL(sql);
-//        long result = db.insert(TB_NAME, null, contentValues);
-//        if (result != -1)
-//            Toast.makeText(context, "Register successfully!", Toast.LENGTH_LONG).show();
-//        else
-//            Toast.makeText(context, "Register failed !", Toast.LENGTH_LONG).show();
+        //String sql = "INSERT INTO " + TB_NAME + " VALUES('" + khachhang.getGmail() + "','" + khachhang.getPassword() + "','" + khachhang.getRePassword() +"')";
+        //db.execSQL(sql);
+
+        long result = db.insert(TB_NAME, null, contentValues);
+        if (result != -1) {
+            Toast.makeText(context, "Register successfully!", Toast.LENGTH_LONG).show();
+            return true;
+        } else {
+            Toast.makeText(context, "Register failed !", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+
     }
 
 //    public boolean checkLogin(String gmailLogin, String passwordLogin) {
